@@ -92,3 +92,34 @@ AdventureEditor.upsert_node(path, {
     "choices": [{"text": "Go north", "target": "north"}]
 })
 ```
+
+Release Checklist
+-----------------
+
+Use this quick flow when publishing updates:
+
+```bash
+# 1) Make sure you are on main
+git checkout main
+
+# 2) Sync with remote
+git pull origin main
+
+# 3) Check what changed
+git status
+
+# 4) Stage everything (or stage specific files)
+git add -A
+
+# 5) Commit
+git commit -m "Describe your changes"
+
+# 6) Push
+git push origin main
+```
+
+Recommended before pushing:
+
+- Run the game once (`python main.py`)
+- Ensure new/updated JSON adventures in `adventures/` load correctly
+- Ensure required sound files are present in `sounds/`
