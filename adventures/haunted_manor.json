@@ -1,0 +1,116 @@
+{
+  "title": "The Haunted Manor",
+  "description": "Strange noises have been coming from the old manor on the hill. The villagers are scared, and they've asked you to investigate. Will you uncover the mystery?",
+  "starting_node_id": "manor_gate",
+  "nodes": [
+    {
+      "node_id": "manor_gate",
+      "title": "The Manor Gate",
+      "description": "You stand before the rusty iron gates of the old manor. The building looms before you, its windows dark and unwelcoming. A cold wind blows through the overgrown garden.",
+      "choices": [
+        {
+          "text": "Enter through the front door",
+          "target": "entrance_hall"
+        },
+        {
+          "text": "Sneak around to the back",
+          "target": "back_door",
+          "requirements": {
+            "dexterity": 12
+          }
+        },
+        {
+          "text": "Turn back to the village",
+          "target": "retreat"
+        }
+      ]
+    },
+    {
+      "node_id": "entrance_hall",
+      "title": "Entrance Hall",
+      "description": "You push open the creaking door and step into a dusty entrance hall. Cobwebs hang from the chandelier, and furniture is covered in white sheets. Suddenly, you hear footsteps upstairs!",
+      "treasure": ["10 gold pieces"],
+      "choices": [
+        {
+          "text": "Go upstairs to investigate",
+          "target": "upstairs"
+        },
+        {
+          "text": "Search the ground floor",
+          "target": "library"
+        }
+      ]
+    },
+    {
+      "node_id": "back_door",
+      "title": "Kitchen Entrance",
+      "description": "You quietly slip through the back door into an old kitchen. On the table, you find a note and some supplies left by previous visitors. The note warns of 'restless spirits' in the manor.",
+      "treasure": ["Potion of Healing", "Silver dagger", "15 gold pieces"],
+      "choices": [
+        {
+          "text": "Proceed into the main hall",
+          "target": "entrance_hall"
+        },
+        {
+          "text": "Investigate the cellar stairs",
+          "target": "cellar"
+        }
+      ]
+    },
+    {
+      "node_id": "library",
+      "title": "The Library",
+      "description": "You enter a dusty library. Ancient books line the shelves. As you browse, you find a journal describing the manor's history. The last owner was rumored to practice dark magic. Suddenly, books begin flying off the shelves!",
+      "monsters": ["giant_spider", "giant_spider"],
+      "treasure": ["Ancient spellbook", "30 gold pieces"],
+      "choices": [
+        {
+          "text": "Go upstairs",
+          "target": "upstairs"
+        },
+        {
+          "text": "Return to the entrance",
+          "target": "entrance_hall"
+        }
+      ]
+    },
+    {
+      "node_id": "cellar",
+      "title": "Dark Cellar",
+      "description": "You descend into a dark, damp cellar. The air is thick with the smell of decay. In the corner, you see movement - skeletal figures rising from the shadows!",
+      "monsters": ["skeleton", "skeleton"],
+      "treasure": ["50 gold pieces", "Magic amulet"],
+      "choices": [
+        {
+          "text": "Return upstairs",
+          "target": "back_door"
+        }
+      ]
+    },
+    {
+      "node_id": "upstairs",
+      "title": "Master Bedroom",
+      "description": "You climb the stairs to the master bedroom. The room is in disarray, as if someone left in a hurry. In the center of the room stands a ghostly figure - the spirit of the manor's last owner! It raises its spectral hands and attacks!",
+      "monsters": ["orc"],
+      "treasure": ["100 gold pieces", "Ornate ring", "Potion of Healing"],
+      "choices": [
+        {
+          "text": "Lay the spirit to rest",
+          "target": "victory"
+        }
+      ]
+    },
+    {
+      "node_id": "victory",
+      "title": "Peace Restored",
+      "description": "With the spirit defeated, you feel a sense of peace wash over the manor. The oppressive atmosphere lifts, and sunlight begins to stream through the windows. You discover a hidden safe containing the owner's treasure.\n\nThe villagers thank you for your bravery, and the manor can now be used again. You've solved the mystery and earned a hero's reward!\n\n*** YOU WIN! ***",
+      "is_victory": true
+    },
+    {
+      "node_id": "retreat",
+      "title": "Too Scary",
+      "description": "You decide the manor is too dangerous and return to the village. The mysterious noises continue, and the villagers remain frightened.\n\nPerhaps another hero will take up the quest...\n\n*** GAME OVER ***",
+      "is_defeat": true
+    }
+  ]
+}

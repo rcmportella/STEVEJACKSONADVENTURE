@@ -1,0 +1,59 @@
+{
+  "title": "Your Adventure Title",
+  "description": "Brief description of the adventure that sets the scene.",
+  "starting_node_id": "start",
+  "nodes": [
+    {
+      "node_id": "start",
+      "title": "Starting Location",
+      "description": "Describe what the player sees and experiences at the start.",
+      "choices": [
+        {
+          "text": "First choice option",
+          "target": "node_2"
+        },
+        {
+          "text": "Second choice option",
+          "target": "node_3"
+        }
+      ]
+    },
+    {
+      "node_id": "node_2",
+      "title": "Combat Scene",
+      "description": "A dangerous encounter awaits!",
+      "monsters": ["goblin"],
+      "treasure": ["Potion of Healing", "20 gold pieces"],
+      "choices": [
+        {
+          "text": "Continue forward",
+          "target": "victory"
+        }
+      ]
+    },
+    {
+      "node_id": "node_3",
+      "title": "Trapped Corridor",
+      "description": "You notice suspicious floor tiles...",
+      "stat_effects": [
+        {
+          "stat": "energia",
+          "amount": "-2d6",
+          "text": "spike trap"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Proceed carefully",
+          "target": "victory"
+        }
+      ]
+    },
+    {
+      "node_id": "victory",
+      "title": "Victory!",
+      "description": "You have successfully completed your quest!\n\n*** YOU WIN! ***",
+      "is_victory": true
+    }
+  ]
+}

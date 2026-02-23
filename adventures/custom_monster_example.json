@@ -1,0 +1,76 @@
+{
+  "title": "The Ice Cavern",
+  "description": "A frozen cavern inhabited by strange and dangerous creatures.",
+  "starting_node_id": "entrance",
+  "custom_monsters": {
+    "ice_troll": {
+      "name": "Ice Troll",
+      "habilidade": 9,
+      "energia": 12
+    },
+    "frost_sprite": {
+      "name": "Frost Sprite",
+      "habilidade": 6,
+      "energia": 5
+    }
+  },
+  "nodes": [
+    {
+      "node_id": "entrance",
+      "title": "Frozen Entrance",
+      "description": "You stand before a cavern entrance. Ice crystals sparkle in the dim light, and you can hear strange sounds echoing from within.",
+      "choices": [
+        {
+          "text": "Enter the cavern",
+          "target": "sprite_chamber"
+        },
+        {
+          "text": "Leave and return home",
+          "target": "retreat"
+        }
+      ]
+    },
+    {
+      "node_id": "sprite_chamber",
+      "title": "Chamber of Frost",
+      "description": "Two frost sprites materialize from the icy mist, their crystalline wings glittering menacingly!",
+      "monsters": ["frost_sprite", "frost_sprite"],
+      "treasure": ["30 gold pieces"],
+      "choices": [
+        {
+          "text": "Continue deeper into the cavern",
+          "target": "troll_lair"
+        },
+        {
+          "text": "Return to the entrance",
+          "target": "entrance"
+        }
+      ]
+    },
+    {
+      "node_id": "troll_lair",
+      "title": "The Ice Troll's Lair",
+      "description": "A massive ice troll emerges from the shadows, its frozen breath visible in the frigid air. This is the guardian of the cavern!",
+      "monsters": ["ice_troll"],
+      "treasure": ["100 gold pieces", "Magic frost blade +2", "Potion of Healing"],
+      "choices": [
+        {
+          "text": "Claim your victory and leave",
+          "target": "victory"
+        }
+      ]
+    },
+    {
+      "node_id": "victory",
+      "title": "Victory!",
+      "description": "You emerge from the ice cavern victorious, your pockets heavy with treasure and tales of your brave deeds!",
+      "is_victory": true
+    },
+    {
+      "node_id": "retreat",
+      "title": "Retreat",
+      "description": "Sometimes discretion is the better part of valor. You return home safely, though without glory or treasure.",
+      "is_victory": false
+    }
+  ]
+}

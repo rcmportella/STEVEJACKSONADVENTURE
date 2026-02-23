@@ -1,0 +1,57 @@
+{
+  "title": "The Toll Bridge",
+  "description": "A simple adventure demonstrating the gold cost feature. You need to cross a bridge guarded by trolls who demand payment.",
+  "starting_node_id": "start",
+  "nodes": [
+    {
+      "node_id": "start",
+      "title": "The Road",
+      "description": "You stand at a crossroads. To the north is a bridge crossing a deep ravine. The bridge is guarded by trolls who charge a toll. To the south is the town where you can find treasure.",
+      "choices": [
+        {
+          "text": "Go to town and search for gold",
+          "target": "town"
+        },
+        {
+          "text": "Try to cross the bridge",
+          "target": "bridge"
+        }
+      ]
+    },
+    {
+      "node_id": "town",
+      "title": "The Town Square",
+      "description": "You explore the town and find some merchants willing to pay for odd jobs.",
+      "treasure": ["50 gold pieces"],
+      "choices": [
+        {
+          "text": "Return to the crossroads",
+          "target": "start"
+        }
+      ]
+    },
+    {
+      "node_id": "bridge",
+      "title": "The Toll Bridge",
+      "description": "A massive troll blocks your path. 'Pay 30 gold to cross!' he demands in a booming voice.",
+      "gold_cost": 30,
+      "choices": [
+        {
+          "text": "Continue across the bridge",
+          "target": "other_side"
+        },
+        {
+          "text": "Return to the crossroads",
+          "target": "start"
+        }
+      ]
+    },
+    {
+      "node_id": "other_side",
+      "title": "Beyond the Bridge",
+      "description": "You made it across! On the other side, you find a treasure chest containing riches beyond measure!",
+      "treasure": ["200 gold pieces", "Magic amulet"],
+      "is_victory": true
+    }
+  ]
+}

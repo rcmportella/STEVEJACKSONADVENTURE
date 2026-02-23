@@ -1,0 +1,64 @@
+{
+  "title": "The Goblin Cave",
+  "description": "A group of goblins has been raiding nearby farms. Track them to their cave and stop them!",
+  "starting_node_id": "cave_entrance",
+  "nodes": [
+    {
+      "node_id": "cave_entrance",
+      "title": "Cave Entrance",
+      "description": "You arrive at the mouth of a dark cave. You can hear goblin voices echoing from within.",
+      "choices": [
+        {
+          "text": "Enter the cave",
+          "target": "goblin_room"
+        },
+        {
+          "text": "Leave and return to town",
+          "target": "retreat"
+        }
+      ]
+    },
+    {
+      "node_id": "goblin_room",
+      "title": "Goblin Den",
+      "description": "A goblin is sitting around a fire, roasting something unpleasant. They spot you and attack!",
+      "monsters": ["goblin"],
+      "treasure": ["10 gold pieces", "Potion of Healing"],
+      "choices": [
+        {
+          "text": "Continue deeper into the cave",
+          "target": "boss_room"
+        },
+        {
+          "text": "Leave the cave victorious",
+          "target": "victory"
+        }
+      ]
+    },
+    {
+      "node_id": "boss_room",
+      "title": "Goblin Chief's Chamber",
+      "description": "A large goblin chief sits on a throne made of stolen goods. He roars and charges at you!",
+      "monsters": ["orc"],
+      "treasure": ["100 gold pieces", "Magic sword +1"],
+      "choices": [
+        {
+          "text": "Return to town victorious",
+          "target": "victory"
+        }
+      ]
+    },
+    {
+      "node_id": "victory",
+      "title": "Victory!",
+      "description": "You have defeated the goblins! The farms are safe once again. Well done, hero!",
+      "is_victory": true
+    },
+    {
+      "node_id": "retreat",
+      "title": "Retreat",
+      "description": "You decide not to risk it and return to town. The goblin raids continue...",
+      "is_defeat": true
+    }
+  ]
+}

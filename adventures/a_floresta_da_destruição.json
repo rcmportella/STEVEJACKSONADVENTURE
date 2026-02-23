@@ -1,0 +1,529 @@
+{
+  "title": "A Floresta da Destrui\u00e7\u00e3o",
+  "description": "Ian Livingstone Doom Forest python port",
+  "starting_node_id": "intro",
+  "nodes": [
+    {
+      "node_id": "intro",
+      "title": "Hist\u00f3ria",
+      "description": "Voc\u00ea \u00e9 um aventureiro, um espadachim de aluguel, e tem estado perambulando pelas \u00e1reas fronteiri\u00e7as do norte de seu reino. Tendo sempre desprezado a monotonia da vida de aldeia, voc\u00ea agora vagueia pela regi\u00e3o em busca de riquezas e perigo. Apesar das longas caminhadas e da dureza da vida ao ar livre, voc\u00ea est\u00e1 satisfeito com seu destino incerto. N\u00e3o h\u00e1 nada no mundo que possa lhe inspirar medo, uma vez que voc\u00ea \u00e9 um guerreiro habilidoso, com muita pr\u00e1tica na arte de eliminar homens e animais cru\u00e9is com sua espada de confian\u00e7a. Nem uma s\u00f3 vez, durante os \u00faltimos dez dias em que esteve viajando nas \u00e1reas fronteiri\u00e7as do norte, voc\u00ea avistou alguma outra pessoa. Isso n\u00e3o o preocupa em nada, uma vez que voc\u00ea fica feliz na companhia de si mesmo e aprecia os dias lentos e ensolarados, ca\u00e7ando, comendo e dormindo.\n\u00c9 noite, e, tendo degustado um jantar de coelho assado no espeto numa fogueira ao ar livre, voc\u00ea se instala para dormir embaixo de seu cobertor de pelo de carneiro. H\u00e1 uma lua cheia, e a luz cintila na l\u00e2mina de sua espada de l\u00e2mina larga, cravada no ch\u00e3o a seu lado. Voc\u00ea fica olhando para ela, imaginando quando ser\u00e1 a pr\u00f3xima vez em que ter\u00e1 que limpar o sangue de alguma criatura abjeta de sua l\u00e2mina afiada. Estas s\u00e3o terras estranhas, habitadas por feras repulsivas e fant\u00e1sticas - goblins, trolls e at\u00e9 mesmo drag\u00f5es.\nEnquanto a chama do fogo de seu acampamento vai morrendo aos poucos, voc\u00ea come\u00e7a a cair no sono, e imagens de trolls de rostos esverdeados que gritam cruzam velozmente sua mente. De repente, nas moitas \u00e0 sua esquerda voc\u00ea ouve um estalo alto de uma galho que se quebra sob um p\u00e9 desajeitado. Voc\u00ea salta de p\u00e9 e pega sua espada n ch\u00e3o. Fica de p\u00e9, im\u00f3vel mas alerta, pronto para investir contra o seu advers\u00e1rio ainda fora de vista. Em seguida, voc\u00ea ouve um gemido, seguido pelo ru\u00eddo seco de um corpo caindo ao ch\u00e3o. Ser\u00e1 uma armadilha? Lentamente, voc\u00ea caminha na dire\u00e7\u00e3o da moita de onde o barulho est\u00e1 vindo e cuidadosamente afasta os galhos. Ao olhar para baixo, voc\u00ea v\u00ea um velhinho bem pequeno com uma grande barba cerrada, seu rosto contorcido em dores. Voc\u00ea se agacha para retirar o elmo de ferro que cobre sua cabe\u00e7a j\u00e1 meio calva e repara nas duas setas de besta que est\u00e3o cravadas no seu tronco gorducho e protegido por uma cota de malha de ferro. Erguendo-o, voc\u00ea o carrega at\u00e9 perto do fogo e aviva as brasas j\u00e1 quase apagadas. Depois de cobri-lo com o cobertor de pele de carneiro, voc\u00ea consegue que o velho beba um pouco de \u00e1gua. Ele tosse e geme. Senta-se ent\u00e3o rigidamente, os olhos fixos \u00e0 sua frente, e come\u00e7a a gritar.\n\"Vou peg\u00e1-los! Vou peg\u00e1-los! N\u00e3o se preocupe, Gillibran, Perna Grande est\u00e1 vindo para lhe trazer o martelo. Ah, sim, sem d\u00favido que estou. Ah sim...\"\nO an\u00e3o, cujo nome voc\u00ea presume que seja Perna Grande, est\u00e1 obviamente delirando por causa dos dardos de ponta envenenada alojados em seu est\u00f4mago. Voc\u00ea fica observando, enquanto ele desaba novamente no ch\u00e3o, depois sussura o nome dele em seu ouvido. Seus olhos o encaram fixamente, e ele come\u00e7a de novo a gritar.\n\"Emboscada! Emboscada! Cuidado! Aaaaah! O martelo! Leve o martelo a Gillibran! Salve os an\u00f5es!\"\nSeus olhos ficam meio fechados, e a dor parece diminuir um pouco. \u00c0 medida em que o del\u00edrio vai se acalmando, ele fala com voc\u00ea de novo num murm\u00fario baixo.\n\"Ajude-me amigo... leve o martelo para Gillibran... somente o martelo unir\u00e1 o nosso povo contra os trolls... N\u00f3s estavamos a caminho de Darkwood em busca do martelo... emboscados pelo povo pequeno... outros mortos... o mapa no meu alforje o levar\u00e1 \u00e0 casa de Yaztromo, o mago mais poderoso dessa regi\u00e3o... ele tem grandes m\u00e1gicas para vender que o proteger\u00e3o das criaturas de Darkwood. Leve meu ouro... eu imploro a voc\u00ea que encontre o martelo e o leve a Gillibran, meu senhor de Stonebridge... voc\u00ea ser\u00e1 recompensado...\"\nPerna Grande abre a boca para come\u00e7ar outra frase, mas n\u00e3o emite nada, a n\u00e3o ser seu \u00faltimo suspiro antes de morrer. Voc\u00ea senta e analisa as palavras de Perna Grande. Quem \u00e9 Gillibran? Quem \u00e9 Yaztromo? Por que tanto alvor\u00e7o por causa do martelo dos an\u00f5es? Voc\u00ea estende a m\u00e3o at\u00e9 o corpo inerte de Perna Grande e retira o alforje do cinto de couro em volta da cintura. No interior dele, voc\u00ea encontra 30 pe\u00e7as de ouro e um mapa.\nCom as moedas tilintando na sua m\u00e3o, voc\u00ea fica pensando nas poss\u00edveis recompensas que podem estar esperando por voc\u00ea somente por trazer de volta um martelo a uma aldeia de an\u00f5es. Voc\u00ea resolve tentar encontrar o martelo na Floresta de Darkwood. J\u00e1 se passaram algumas semanas desde sua \u00faltima boa batalha, e, ainda mais importante, voc\u00ea provavelmente ser\u00e1 bem pago por essa.\nTendo se decidido, voc\u00ea se instala para dormir, depois de pegar a pele de carneiro de volta do pobre Perna Grande. De manh\u00e3, voc\u00ea enterra o velho an\u00e3o e re\u00fane suas posses. Voc\u00ea examina o mapa, olha para o sol e estabele sua posi\u00e7\u00e3o. Assobiando alegremente, voc\u00ea parte na dire\u00e7\u00e3o do sul em boa velocidade, ansioso para encontrar este home Yaztromo e ver o que ele tem para oferecer.",
+      "choices": [
+        {
+          "text": "Continue",
+          "target": "1"
+        }
+      ]
+    },
+    {
+      "node_id": "1",
+      "title": "Casa do Yastromo",
+      "description": "Sua caminhada at\u00e9 a casa de Yaztromo leva um pouco mais da metade de um dia, e voc\u00ea chega \u00e0 torre de pedra onde ele habita sujo e com fome. Como a torre fica afastada na periferia de Darkwood, a uns cinquenta metros de dist\u00e2ncia da trilha que voc\u00ea estava seguindo, n\u00e3o \u00e9 f\u00e1cil encontr\u00e1-la. Finalmente, voc\u00ea chega junto \u00e0 imensa porta de carvalho, de certa forma aliviado por descobrir que de fato a torre existe, e que Perna Grande n\u00e3o estava falando loucuras em seu del\u00edrio. Um grande sino de metal e um gongo pendem do arco de pedra. Ao tocar o sino, um calafrio percorre a sua espinha, e voc\u00ea se d\u00e1 conta de que o som alto invade um sil\u00eancio profundo no qual voc\u00ea n\u00e3o tinha reparado antes. N\u00e3o se ouvem ru\u00eddos de animais ou p\u00e1ssaros. Voc\u00ea espera ansiosamente junto \u00e0 porta e ouve passadas lentas que descem escadas vindas da torre acima. Uma pequena portinhola de madeira se abre, e dois olhos aparecem, examinando voc\u00ea.\n\"Bem, quem \u00e9 voc\u00ea?\" - pergunta uma voz aborrecida atrav\u00e9s do orif\u00edcio.\nVoc\u00ea responde que \u00e9 um aventureiro em busca do poderoso mago Yaztromo, tendo a inten\u00e7\u00e3o de adquirir alguns artigos m\u00e1gicos dele para combater as criaturas da Floresta de Darkwood.\n\"Ah, bem, nesse caso, se voc\u00ea est\u00e1 interessado em comprar algumas mercadorias minhas, \u00e9 melhor subir. Eu sou Yaztromo.\"\nEle ent\u00e3o se volta e sobe lentamente os degraus de pedra.\nVoc\u00ea:",
+      "choices": [
+        {
+          "text": "Subir\u00e1 as escada atr\u00e1s dele?",
+          "target": "261"
+        },
+        {
+          "text": "Desembainhar\u00e1 sua espada para atac\u00e1-lo?",
+          "target": "54"
+        }
+      ]
+    },
+    {
+      "node_id": "2",
+      "title": "FIM",
+      "description": "Sua aventura termina aqui, quando sua carne freca e saborosa est\u00e1 prestes a se tornar um apetitoso festim para o vitorioso Ghoul.",
+      "is_defeat": true
+    },
+    {
+      "node_id": "3",
+      "title": "3",
+      "description": "Voc\u00ea segue mais cinco setas at\u00e9 o tronco de uma velha \u00e1rvore j\u00e1 morta, mas inda enra\u00edzada no solo. Voc\u00ea v\u00ea que o tronco \u00e9 oco, o que o buraco continua pelo ch\u00e3o adentro, formando um t\u00fanel. Est\u00e1 escuro no buraco, e voc\u00ea n\u00e3o consegue ver a que dist\u00e2ncia est\u00e1 o fundo. Voc\u00ea tem um Anel de Luz?",
+      "choices": [
+        {
+          "text": "Sim.",
+          "target": "322",
+          "requirements": {
+            "item": "Anel de Luz"
+          }
+        },
+        {
+          "text": "N\u00e3o.",
+          "target": "120"
+        }
+      ]
+    },
+    {
+      "node_id": "4",
+      "title": "Flechada no ombro",
+      "description": "A flecha atingiu seu ombro. Se ainda estiver vivo, consegue arrancar a flecha de seu ombro, ainda que cause grande agonia.",
+      "stat_effects": [
+        {
+          "stat": "energia",
+          "amount": "-4"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Entre na caverna.",
+          "target": "49"
+        },
+        {
+          "text": "Se arraste de volta para a encruzilhada.",
+          "target": "93"
+        }
+      ]
+    },
+    {
+      "node_id": "5",
+      "title": "5",
+      "description": "Sentado no trono ornamentado, voc\u00ea se sente estranhamente desconfort\u00e1vel. Os dois guerreiros-clones rastejam no ch\u00e3o \u00e0 sua frente em completa subservi\u00eancia. Ser\u00e1 que eles esperam que voc\u00ea se torne o novo senhor deles?",
+      "choices": [
+        {
+          "text": "Colque a coroa de ouro sobre sua cabe\u00e7a.",
+          "target": "333"
+        },
+        {
+          "text": "Saia do nicho e suba o restante dos degraus at\u00e9 o teto da caverna.",
+          "target": "249"
+        }
+      ]
+    },
+    {
+      "node_id": "6",
+      "title": "6",
+      "description": "Quando voc\u00ea passa andando pelo Goblin, ele rosna de uma maneira que voc\u00ea jamais havia ouvido antes, um rosnado que voc\u00ea n\u00e3o esperaria que viesse de um goblin.",
+      "choices": [
+        {
+          "text": "Sentindo-se um pouco nervoso, voc\u00ea segue rapidamente para o norte.",
+          "target": "148"
+        }
+      ]
+    },
+    {
+      "node_id": "7",
+      "title": "Abelhas assassinas",
+      "description": "Voc\u00ea puxa sua espada e se prepara para enfrentar os agressores de corpos listrados em preto e amarelo. S\u00e3o ABELHAS ASSASSINAS. Elas atacar\u00e3o em enxames separados, cada enxame contando como uma \u00fanica criatura.",
+      "monsters": [
+        "Abelhas_Assassinas"
+      ],
+      "choices": [
+        {
+          "text": "Derrotou enxame 1",
+          "target": "enxame2"
+        }
+      ]
+    },
+    {
+      "node_id": "enxame2",
+      "title": "ABELHAS ASSASSINAS 2",
+      "description": "O segundo enxame ataca.",
+      "monsters": [
+        "Abelhas_Assassinas"
+      ],
+      "choices": [
+        {
+          "text": "Vit\u00f3ria, mas um terceiro enxame se aproxima.",
+          "target": "enxame3"
+        }
+      ]
+    },
+    {
+      "node_id": "enxame3",
+      "title": "ABELHAS ASSASSINAS",
+      "description": "Outro enxame ataca. Parece que eles nunca acabam!",
+      "monsters": [
+        "Abelhas_Assassinas"
+      ],
+      "choices": [
+        {
+          "text": "Finalmente voc\u00ea conseguiu derrotar as abelhas assassinas.",
+          "target": "23"
+        }
+      ]
+    },
+    {
+      "node_id": "8",
+      "title": "8",
+      "description": "Seguindo ao longo da trilha, voc\u00ea ouve passos e vozes que discutem adiante.",
+      "choices": [
+        {
+          "text": "Siga ao encontro dos donos das vozes.",
+          "target": "317"
+        },
+        {
+          "text": "Se esconda no mato e deixa que eles passem.",
+          "target": "392"
+        }
+      ]
+    },
+    {
+      "node_id": "9",
+      "title": "9",
+      "description": "Voc\u00ea destranca a porta e d\u00e1 um passo atr\u00e1s, desembainhando sua espada caso o goblin tente lhe atacar. Ele apanha um banco de madeira e, brandindo o objeto no ar, abre a porta com um pontap\u00e9 e avan\u00e7a sobre voc\u00ea aos gritos. Voc\u00ea ter\u00e1 que lutar.",
+      "monsters": [
+        "goblin"
+      ],
+      "choices": [
+        {
+          "text": "victory",
+          "target": "176"
+        }
+      ]
+    },
+    {
+      "node_id": "10",
+      "title": "10",
+      "description": "Voc\u00ea apanha uma pedra de bom tamanho do ch\u00e3o e faz pontaria. Em seguida, lan\u00e7a a pedra com toda a sua for\u00e7a no Ogro, mas fica decepcionado ao v\u00ea-la passar voando por sobre sua cabe\u00e7a e se espatifar contra a parede do outro lado da caverna. Voc\u00ea solta um palavr\u00e3o, mas resolve, ainda assim, avan\u00e7ar pela caverna para atacar o Ogro.",
+      "choices": [
+        {
+          "text": "Continue.",
+          "target": "290"
+        }
+      ]
+    },
+    {
+      "node_id": "11",
+      "title": "11",
+      "description": "Voc\u00ea come\u00e7ar a perder o equil\u00edbrio \u00e0 medida em que a ilus\u00e3o vai distorcendo sua mente. Voc\u00ea fecha os olhos e segura a cabe\u00e7a nas m\u00e3os, mas n\u00e3o adianta nada. Voc\u00ea gira \u00e0s cegas pelo aposento e depois cai no ch\u00e3o inconsciente.",
+      "choices": [
+        {
+          "text": "Continue.",
+          "target": "353"
+        }
+      ]
+    },
+    {
+      "node_id": "12",
+      "title": "12",
+      "description": "Voc\u00ea diz ao gnomo que talvez tenha sido um pouco precipitado ao desembainhar a espada, mas, tinha de estar preparado para tudo nos limites da cruel Floresta de Darkwood. Ele replica que isso n\u00e3o \u00e9 desculpa para puxar uma arma diante de um velho indefeso, e que, se voc\u00ea quiser sua espada de volta, isso lhe custar\u00e1 10 pe\u00e7as de ouro ou dois itens de sua mochila.",
+      "choices": [
+        {
+          "text": "Pague 10 moedas de ouro.",
+          "target": "pague10ouros"
+        },
+        {
+          "text": "D\u00ea dois itens de sua mochila.",
+          "target": "2itensdamochila"
+        }
+      ]
+    },
+    {
+      "node_id": "pague10ouros",
+      "title": "Pague 10 ouros ao Gnomo",
+      "description": "Voc\u00ea paga 10 ouros ao gnomo e ele devolve sua espada.",
+      "treasure": [
+        "Longsword"
+      ],
+      "choices": [
+        {
+          "text": "Continue a conversar com o gnomo.",
+          "target": "271"
+        },
+        {
+          "text": "Siga pela trilha oeste.",
+          "target": "67"
+        }
+      ],
+      "gold_cost": 10
+    },
+    {
+      "node_id": "13",
+      "title": "13",
+      "description": "As vibra\u00e7\u00f5es atingem seu corpo como ondas de choque que o martelassem. Suas pernas parecem chumbo, e voc\u00ea n\u00e3o consegue mex\u00ea-las. De repente, a cabana desaba e vem ao ch\u00e3o. O c\u00e9u escurece, um vento come\u00e7a a uivar \u00e0 sua volta. Venta cada vezx mais forte, chegando a atingir a for\u00e7a de uma tempestade e acabando por derrubar voc\u00ea ao ch\u00e3o. Voc\u00ea se agarra na varanda e protege o rosto da sujeira e dos detritos que a tempestade faz voar pelo ar. Mais alto do que o ru\u00eddo ensurdecedor do vento, voc\u00ea ouve uma risada, seguida por uma voz profunda que exulta: \"Estou livre! Estou livre!\" Voc\u00ea libertou um ELEMENTO DA TERRA no mundo. Gradualmente, o vento uivante vai morrendo, e o c\u00e9u clareia. Levantando-se em meio aos destro\u00e7os, voc\u00ea caminha lentamente de volta \u00e0 trilha para prosseguir rumo ao norte.",
+      "choices": [
+        {
+          "text": "Continue.",
+          "target": "149"
+        }
+      ]
+    },
+    {
+      "node_id": "14",
+      "title": "14",
+      "description": "O fosso \u00e9 circular com lados lisos, e voc\u00ea est\u00e1 fraco demais para sair escalando. Voc\u00ea grita por ajuda, mas ningu\u00e9m vem para socorrer. Voc\u00ea senta e analisa a sua situa\u00e7\u00e3o. Depois de uma hora de espera mais ou menos, voc\u00ea ouve um barulho l\u00e1 no alto. Voc\u00ea olha para cima e v\u00ea o rosto barbado de um homem robusto com um chap\u00e9u de pele. Ele parece aborrecido. Trata-se de um ca\u00e7ador de animais de pele valiosa, e voc\u00ea arruinou a armadilha dele. Ele grita para voc\u00ea l\u00e1 de cima que, se espera que ele jogue uma corda para que voc\u00ea suba, isso vai custar 3 pe\u00e7as de ouro. Em substitui\u00e7\u00e3o a esta quantia, ele aceitar\u00e1 qualquer artigo m\u00e1gico que voc\u00ea queira ceder a ele dentre os que est\u00e3o em sua mochila. Depois que voc\u00ea concorda em pagar ao zangado ca\u00e7ador, ele joga uma corda para que voc\u00ea possa subir e sair do po\u00e7o. Voc\u00ea entrega a taxa combinada, cortando-a da sua lista de equipamentos e encara o ca\u00e7ador pouco amig\u00e1vel com raiva antes de prosseguir para o norte, descendo a garganta.",
+      "choices": [
+        {
+          "text": "Continue para o norte.",
+          "target": "255"
+        }
+      ],
+      "gold_cost": 3
+    },
+    {
+      "node_id": "15",
+      "title": "15",
+      "description": "A enconsta \u00e9 \u00edngreme, e voc\u00ea escorrega na gosma, rolando pelo buraco at\u00e9 o fundo de uma grande caverna barrenta. Voc\u00ea salta de p\u00e9 e fica alarmado ao ver a ponta brilhante do ferr\u00e3o venenoso na extremidade da cauda de um enorme VERME DE PE\u00c7ONHA que est\u00e1 vindo na sua dire\u00e7\u00e3o. O Verme de Pe\u00e7onha tem uns cinco metros de comprimento, e seus segmentos amarelos s\u00e3o imensos, mas voc\u00ea est\u00e1 preocupado em proteger-se do ferr\u00e3o. N\u00e3o h\u00e1 tempo para fugir para fora do buraco - voc\u00ea tem que desembainhar sua espada e lutar.",
+      "monsters": [
+        "VERME DE PE\u00c7ONHA"
+      ],
+      "choices": [
+        {
+          "text": "Continue",
+          "target": "217"
+        }
+      ]
+    },
+    {
+      "node_id": "16",
+      "title": "16",
+      "description": "Voc\u00ea grita para os tr\u00eas human\u00f3ides que est\u00e3o cuidando de um ro\u00e7ado de fungos de topo vermelho. Outra vez eles ignoram sua presen\u00e7a, continuando o trabalho deles. Voc\u00ea pega um dos fungos, parte um peda\u00e7o do topo e come\u00e7a a comer. O gosto \u00e9 bom, mas uma dor terr\u00edvel invade seu est\u00f4mgao. O fungo \u00e9 venenoso. Voc\u00ea tem uma Po\u00e7\u00e3o Antiveneno?",
+      "choices": [
+        {
+          "text": "N\u00e3o",
+          "target": "345"
+        },
+        {
+          "text": "Sim.",
+          "target": "211",
+          "requirements": {
+            "item": "Po\u00e7\u00e3o Antiveneno"
+          }
+        }
+      ]
+    },
+    {
+      "node_id": "17",
+      "title": "17",
+      "description": "Uma escada desce pelo interior do po\u00e7o at\u00e9 a \u00e1gua l\u00e1 embaixo. Contudo, parece haver um t\u00fanel logo acima da superf\u00edcie da \u00e1gua, o qual segue para o norte. \u00c9 circular, e tem o di\u00e2metro de um metro. Voc\u00ea pode:",
+      "choices": [
+        {
+          "text": "Jogar uma pe\u00e7a de ouro no po\u00e7o para fazer um pedido.",
+          "target": "89"
+        },
+        {
+          "text": "Descer a escada para olhar o t\u00fanel.",
+          "target": "256"
+        },
+        {
+          "text": "Retornar \u00e0 trilha para seguir para o oeste.",
+          "target": "238"
+        }
+      ]
+    },
+    {
+      "node_id": "18",
+      "title": "18",
+      "description": "Seu plano funciona, e a febre diminui. Felizmente, os pelos nas costas de suas m\u00e3os desaparecem, e voc\u00ea cai de novo em sono profundo, exausto. De manh\u00e3, voc\u00ea re\u00fane seus pertences e parte para o norte pela trilha, na dire\u00e7\u00e3o das montanhas.",
+      "choices": [
+        {
+          "text": "Continue.",
+          "target": "198"
+        }
+      ]
+    },
+    {
+      "node_id": "19",
+      "title": "19",
+      "description": "Embora fraco por causa da febre, voc\u00ea consegue sentar. Segura ent\u00e3o sua espada e, apertando os dentes, voc\u00ea corta a si mesmo no lugar onde for a mordida do lobisome. O sangue corre rapidamente do ferimento e, com sorte, leva com ele a doen\u00e7a. Voc\u00ea perde for\u00e7a devido a perda de sangue.",
+      "stat_effects": [
+        {
+          "stat": "energia",
+          "amount": "-1d4",
+          "text": "corte superficial"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Continue.",
+          "target": "18"
+        }
+      ]
+    },
+    {
+      "node_id": "20",
+      "title": "20",
+      "description": "Caminhando para o leste, voc\u00ea se depara com uma ramifica\u00e7\u00e3o da trilha que segue para o sul. Voc\u00ea decide ignorar isso e continua para o leste.",
+      "choices": [
+        {
+          "text": "Continue para o leste.",
+          "target": "277"
+        }
+      ]
+    },
+    {
+      "node_id": "21",
+      "title": "21",
+      "description": "A dor aumenta, e voc\u00ea rapidamente procura em sua mochila e retira a pequena garrafa com o r\u00f3tulo de Po\u00e7\u00e3o Antiveneno. Voc\u00ea engole o conte\u00fado. Seu corpo relaxa, e os efeitos do veneno v\u00e3o sumindo. Voc\u00ea fica imaginando o que mais est\u00e1 reservado para voc\u00ea nessa floresta e volta-se para o norte, subindo a trilha.",
+      "choices": [
+        {
+          "text": "Suba a trilha em dire\u00e7\u00e3o norte.",
+          "target": "226"
+        }
+      ],
+      "item_cost": {
+        "Po\u00e7\u00e3o Antiveneno": 1
+      }
+    },
+    {
+      "node_id": "22",
+      "title": "22",
+      "description": "O g\u00e1s \u00e9 t\u00f3xico, e seus olhos come\u00e7am a lacrimejar. Voc\u00ea tosse e prende a respira\u00e7\u00e3o, correndo em volta da caverna para tentar escapar da nuvem de g\u00e1s que envolve seu rosto. Seus pulm\u00f5es parecem estar explodindo, e voc\u00ea \u00e9 for\u00e7ado a inspirar. Voc\u00ea se sente fraco e exausto. Se ainda estiver vivo, voc\u00ea fica aliviado ao ver a nuvem de g\u00e1s ir se dissipando. Voc\u00ea coloca a caixa de prata na sua mochila e sai da caverna imediatamente para continuar na dire\u00e7\u00e3o do norte em sua miss\u00e3o.",
+      "treasure": [
+        "Caixa de Prata"
+      ],
+      "stat_effects": [
+        {
+          "stat": "energia",
+          "amount": "-1d6"
+        },
+        {
+          "stat": "habilidade",
+          "amount": "-2"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Continue na dire\u00e7\u00e3o norte.",
+          "target": "358"
+        }
+      ]
+    },
+    {
+      "node_id": "23",
+      "title": "23",
+      "description": "Voc\u00ea enxuga o suor da sua testa e fica imaginando o que mais essas terras cru\u00e9is ter\u00e3o reservado para voc\u00ea. Voc\u00ea senta e descansa um pouco. Depois, parte na dire\u00e7\u00e3o do som de \u00e1gua corrente.",
+      "choices": [
+        {
+          "text": "V\u00e1 em dire\u00e7\u00e3o ao som de \u00e1gua corrente.",
+          "target": "339"
+        }
+      ]
+    },
+    {
+      "node_id": "24",
+      "title": "24",
+      "description": "Os m\u00fasculos de seu pesco\u00e7o come\u00e7am a endurecer, e voc\u00ea sente os efeitos do veneno dos dardos percorrendo seu corpo. Voc\u00ea procura rapidamente na sua mochila e retira a pequena garrafa com o r\u00f3tulo Po\u00e7\u00e3o Antiveneno, depois engole o conte\u00fado. Seu corpo relaxa, e os efeitos do veneno v\u00e3o sumindo. Ao ver isso, os pigmeus voltam-se e fogem para o mato. Voc\u00ea:",
+      "choices": [
+        {
+          "text": "Desembainhar\u00e1 sua espada e correr\u00e1 para o mato na persegui\u00e7\u00e3o dos pigmeus?",
+          "target": "377"
+        },
+        {
+          "text": "Continuar\u00e1 para o norte pela trilha?",
+          "target": "92"
+        }
+      ],
+      "item_cost": {
+        "Po\u00e7\u00e3o Antiveneno": 1
+      }
+    },
+    {
+      "node_id": "25",
+      "title": "25",
+      "description": "A trilha acaba por se tornar plana, e voc\u00ea se v\u00ea no fundo de um vale. A trilha tamb\u00e9m continua para o norte, mas h\u00e1 um novo caminho que leva na dire\u00e7\u00e3o do oeste.",
+      "choices": [
+        {
+          "text": "Continue para o norte",
+          "target": "369"
+        },
+        {
+          "text": "V\u00e1 para o oeste.",
+          "target": "56"
+        }
+      ]
+    },
+    {
+      "node_id": "26",
+      "title": "26",
+      "description": "Voc\u00ea resolve come\u00e7ar sua busca pelas estantes de madeira. Todos os livros est\u00e3o escritos em uma l\u00edngua que voc\u00ea n\u00e3o conhece e cont\u00eam estranhos diagramas. Os mapas e pergaminhos tamb\u00e9m s\u00e3o inintelig\u00edveis para voc\u00ea. Voc\u00ea abre arm\u00e1rios e gavetas, mas tudo que voc\u00ea encontra s\u00e3o mais livros, empoeirados e encadernados em couro. Voc\u00ea est\u00e1 prestes a desistir de sua busca no aposento quando repara em ainda mais um livro no ch\u00e3o, servindo de apoio para uma perna de mesa quebrada. Voc\u00ea:",
+      "choices": [
+        {
+          "text": "Apanhar\u00e1 o livro?",
+          "target": "91"
+        },
+        {
+          "text": "Desistir\u00e1 de sua busca e retornar\u00e1 \u00e0 trilha para prosseguir para o norte?",
+          "target": "220"
+        }
+      ]
+    },
+    {
+      "node_id": "27",
+      "title": "27",
+      "description": "Limpando a seiva-sangue verde e grossa da sua espada, voc\u00ea parte para o norte mais uma vez. Fica aliviado ao ver que as \u00e1rvores est\u00e3o finalmente come\u00e7ando a se tornar mais esparsas e parecer menos amea\u00e7adoras.",
+      "choices": [
+        {
+          "text": "Siga em frente.",
+          "target": "329"
+        }
+      ]
+    },
+    {
+      "node_id": "28",
+      "title": "28",
+      "description": "Voc\u00ea possui uma Bra\u00e7adeira de For\u00e7a?",
+      "choices": [
+        {
+          "text": "Sim.",
+          "target": "52",
+          "requirements": {
+            "item": "Bra\u00e7adeira de For\u00e7a"
+          }
+        },
+        {
+          "text": "N\u00e3o",
+          "target": "266"
+        }
+      ]
+    },
+    {
+      "node_id": "29",
+      "title": "29",
+      "description": "Numa pequena clareira em meio \u00e0s \u00e1rvores, voc\u00ea v\u00ea duas pequenas criaturas de pele cheia de verrugas, vestindo armaduras de couro. Eles parecem estar discutindo sobre quem deveria se encarregar do coelho que est\u00e1 sendo assado ao fogo num espeto. Ao verem voc\u00ea, eles interrompem a discuss\u00e3o e puxam suas espadas curtas. Voc\u00ea ter\u00e1 que lutar contra os ORCAS que avan\u00e7am na sua dire\u00e7\u00e3o.",
+      "monsters": [
+        "ORCA1",
+        "ORCA2"
+      ],
+      "choices": [
+        {
+          "text": "Vit\u00f3ria.",
+          "target": "383"
+        },
+        {
+          "text": "Fuja!",
+          "target": "254"
+        }
+      ]
+    },
+    {
+      "node_id": "30",
+      "title": "30",
+      "description": "Voc\u00ea teve um profundo corte na sua testa. Se ainda estiver vivo siga em frente.",
+      "stat_effects": [
+        {
+          "stat": "energia",
+          "amount": "-2"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Siga em frente.",
+          "target": "225"
+        }
+      ]
+    }
+  ],
+  "custom_monsters": {
+    "Abelhas_Assassinas": {
+      "name": "Abelhas Assassinas",
+      "habilidade": 7,
+      "energia": 4
+    },
+    "VERME DE PE\u00c7ONHA": {
+      "name": "Verme de Pe\u00e7onha",
+      "habilidade": 8,
+      "energia": 7
+    },
+    "ORCA1": {
+      "name": "Orca",
+      "habilidade": 5,
+      "energia": 5
+    },
+    "ORCA2": {
+      "name": "Orca",
+      "habilidade": 5,
+      "energia": 6
+    }
+  }
+}

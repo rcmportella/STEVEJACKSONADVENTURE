@@ -1,0 +1,211 @@
+{
+  "title": "The Dark Tower",
+  "description": "A mysterious tower has appeared on the outskirts of town. Strange creatures have been seen emerging from it at night. You have been hired to investigate and stop whatever evil lurks within.",
+  "starting_node_id": "start",
+  "nodes": [
+    {
+      "node_id": "start",
+      "title": "The Tower Entrance",
+      "description": "You stand before a tall, ominous tower built of black stone. The entrance is a massive wooden door, slightly ajar. Strange sounds echo from within. A worn path leads around the side of the tower, and you notice a small window high up on the wall.",
+      "choices": [
+        {
+          "text": "Enter through the main door",
+          "target": "main_hall"
+        },
+        {
+          "text": "Investigate the side path",
+          "target": "side_path"
+        },
+        {
+          "text": "Try to climb to the window",
+          "target": "window_climb",
+          "requirements": {
+            "dexterity": 14
+          }
+        }
+      ]
+    },
+    {
+      "node_id": "main_hall",
+      "title": "The Main Hall",
+      "description": "You push open the heavy door and step into a vast hall. Torches flicker on the walls, casting dancing shadows. At the far end, a grand staircase leads upward. You hear the shuffling of feet and see two goblins turning to face you with crude weapons drawn!",
+      "monsters": ["goblin", "goblin"],
+      "choices": [
+        {
+          "text": "Ascend the stairs",
+          "target": "upper_chamber"
+        },
+        {
+          "text": "Search the hall for secrets",
+          "target": "secret_room"
+        }
+      ]
+    },
+    {
+      "node_id": "side_path",
+      "title": "The Side Path",
+      "description": "You follow a narrow path around the tower. Overgrown with weeds and brambles, it seems rarely used. You discover a small cellar entrance, partially hidden by vegetation. The door is old and rusty but appears unlocked.",
+      "treasure": ["Potion of Healing", "25 gold pieces"],
+      "choices": [
+        {
+          "text": "Enter the cellar",
+          "target": "cellar"
+        },
+        {
+          "text": "Return to the main entrance",
+          "target": "start"
+        }
+      ]
+    },
+    {
+      "node_id": "window_climb",
+      "title": "The Tower Window",
+      "description": "With agility and skill, you scale the tower wall and slip through the window. You find yourself in a small study. Ancient books line the shelves, and a desk holds various arcane instruments. This appears to be a wizard's workshop. You notice a journal on the desk and a trapdoor in the floor.",
+      "treasure": ["Spell scroll: Magic Missile", "Wizard's journal"],
+      "choices": [
+        {
+          "text": "Read the journal",
+          "target": "read_journal"
+        },
+        {
+          "text": "Open the trapdoor",
+          "target": "main_hall"
+        },
+        {
+          "text": "Continue through the door",
+          "target": "upper_chamber"
+        }
+      ]
+    },
+    {
+      "node_id": "read_journal",
+      "title": "The Wizard's Secret",
+      "description": "You read the journal and learn that a wizard named Malachar once lived here. He attempted to summon a demon but lost control. The demon now commands the tower and its creatures. The journal mentions that the demon can only be defeated by destroying its binding crystal, located in the tower's highest chamber. You also find a note about a secret passage.",
+      "choices": [
+        {
+          "text": "Look for the secret passage",
+          "target": "secret_passage"
+        },
+        {
+          "text": "Continue exploring",
+          "target": "upper_chamber"
+        }
+      ]
+    },
+    {
+      "node_id": "cellar",
+      "title": "The Dark Cellar",
+      "description": "The cellar is damp and cold. Crates and barrels are stacked haphazardly. You hear a skittering sound and see several giant spiders crawling down from their webs!",
+      "monsters": ["giant_spider", "giant_spider"],
+      "treasure": ["50 gold pieces", "Potion of Healing"],
+      "choices": [
+        {
+          "text": "Climb the stairs to the main tower",
+          "target": "main_hall"
+        }
+      ]
+    },
+    {
+      "node_id": "secret_room",
+      "title": "Hidden Chamber",
+      "description": "You discover a hidden door behind a tapestry! Inside is a small armory with various weapons and a suit of armor. Among the treasures, you also find a healing potion.",
+      "treasure": ["Longsword +1", "Chain Mail", "2x Potion of Healing", "30 gold pieces"],
+      "choices": [
+        {
+          "text": "Continue up the stairs",
+          "target": "upper_chamber"
+        },
+        {
+          "text": "Return to the hall",
+          "target": "main_hall"
+        }
+      ]
+    },
+    {
+      "node_id": "upper_chamber",
+      "title": "The Upper Chamber",
+      "description": "You ascend the stairs to a circular chamber. The walls are covered in arcane symbols that glow with an eerie light. In the center of the room, an orc warrior stands guard, wielding a massive battle axe. Beyond him, another staircase leads even higher.",
+      "monsters": ["orc"],
+      "choices": [
+        {
+          "text": "Continue upward",
+          "target": "trap_corridor"
+        },
+        {
+          "text": "Search the chamber",
+          "target": "search_upper"
+        }
+      ]
+    },
+    {
+      "node_id": "search_upper",
+      "title": "Arcane Discoveries",
+      "description": "You examine the arcane symbols and discover they form a protective ward. With some study, you understand that dispelling it would weaken the demon above. You also find a hidden alcove containing treasure.",
+      "treasure": ["Spell scroll: Fireball", "Magic amulet", "40 gold pieces"],
+      "choices": [
+        {
+          "text": "Continue to the top of the tower",
+          "target": "trap_corridor"
+        }
+      ]
+    },
+    {
+      "node_id": "trap_corridor",
+      "title": "The Trapped Corridor",
+      "description": "You enter a long corridor leading to the tower's peak. The floor is made of stone tiles, and you notice some appear slightly different from others. This looks like a trapped hallway!",
+      "stat_effects": [
+        {
+          "stat": "energia",
+          "amount": "-2d4",
+          "text": "poison dart trap"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Proceed to the summit",
+          "target": "demon_chamber"
+        }
+      ]
+    },
+    {
+      "node_id": "secret_passage",
+      "title": "Hidden Passage",
+      "description": "You find a secret passage behind a bookshelf! It leads through the tower walls, bypassing the trapped corridor entirely. You emerge near the summit chamber.",
+      "treasure": ["Ancient spellbook", "Potion of Healing"],
+      "choices": [
+        {
+          "text": "Enter the demon's chamber",
+          "target": "demon_chamber"
+        }
+      ]
+    },
+    {
+      "node_id": "demon_chamber",
+      "title": "The Demon's Lair",
+      "description": "You enter the highest chamber of the tower. A massive pentagram is drawn on the floor in what appears to be blood. In the center stands a terrible demon, its eyes burning with hellfire. A glowing crystal hovers above an altar - the binding crystal! The demon roars and attacks!",
+      "monsters": ["ogre"],
+      "choices": [
+        {
+          "text": "Destroy the binding crystal",
+          "target": "victory"
+        },
+        {
+          "text": "Flee the tower",
+          "target": "defeat_fled"
+        }
+      ]
+    },
+    {
+      "node_id": "victory",
+      "title": "Victory!",
+      "description": "With the demon defeated, you approach the binding crystal. You raise your weapon and strike it with all your might. The crystal shatters into a thousand pieces, and the demon lets out a final scream before dissolving into smoke. The tower begins to crumble around you, but you manage to escape just in time.\n\nThe townsfolk celebrate your heroism, and you are rewarded handsomely. The threat has been vanquished, and peace returns to the land!\n\n*** YOU WIN! ***",
+      "is_victory": true
+    },
+    {
+      "node_id": "defeat_fled",
+      "title": "Defeat",
+      "description": "You flee from the demon's chamber, running down the tower stairs as fast as you can. The demon's laughter echoes behind you. You escape the tower with your life, but the demon remains, and the threat continues to grow.\n\nYou have failed in your quest.\n\n*** GAME OVER ***",
+      "is_defeat": true
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "title": "The Sacred Temple",
+  "description": "An ancient temple requires special offerings to enter its inner chambers. You must gather the sacred items and present them at the altar.",
+  "starting_node_id": "temple_entrance",
+  "nodes": [
+    {
+      "node_id": "temple_entrance",
+      "title": "Temple Entrance",
+      "description": "You stand before an ancient temple. A stone inscription reads: 'To enter the inner sanctum, one must present 3 sacred candles and 1 golden key at the altar.' You can explore the temple grounds to find these items.",
+      "choices": [
+        {
+          "text": "Search the eastern garden",
+          "target": "eastern_garden"
+        },
+        {
+          "text": "Search the western shrine",
+          "target": "western_shrine"
+        },
+        {
+          "text": "Approach the altar (requires 3 candles + 1 key)",
+          "target": "inner_sanctum"
+        }
+      ]
+    },
+    {
+      "node_id": "eastern_garden",
+      "title": "Eastern Garden",
+      "description": "You find a peaceful garden with ancient statues. Among the flowers, you discover some sacred candles and a golden key!",
+      "treasure": ["Sacred Candle", "Sacred Candle", "Golden Key"],
+      "choices": [
+        {
+          "text": "Return to temple entrance",
+          "target": "temple_entrance"
+        },
+        {
+          "text": "Search the western shrine",
+          "target": "western_shrine"
+        }
+      ]
+    },
+    {
+      "node_id": "western_shrine",
+      "title": "Western Shrine",
+      "description": "At a small shrine, you find another sacred candle and some gold pieces left as offerings.",
+      "treasure": ["Sacred Candle", "50 gold pieces"],
+      "choices": [
+        {
+          "text": "Return to temple entrance",
+          "target": "temple_entrance"
+        },
+        {
+          "text": "Search the eastern garden",
+          "target": "eastern_garden"
+        }
+      ]
+    },
+    {
+      "node_id": "inner_sanctum",
+      "title": "The Inner Sanctum",
+      "description": "You present the sacred candles and golden key at the altar. The ancient doors slowly open, revealing the inner sanctum! Inside, you find incredible treasures and ancient wisdom.",
+      "item_cost": {
+        "Sacred Candle": 3,
+        "Golden Key": 1
+      },
+      "treasure": ["Ancient Artifact", "200 gold pieces", "Book of Wisdom"],
+      "is_victory": true
+    }
+  ]
+}
