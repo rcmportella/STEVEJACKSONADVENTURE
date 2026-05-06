@@ -16,6 +16,8 @@ class GameEngine:
         self.victory = False
         self.visited_nodes = set()
         self.game_log = []
+        self._combat_stat_saves = {}
+        self._combat_modifier_messages = []
 
     def start_game(self):
         self._log(f"\n{'='*60}")
@@ -75,9 +77,40 @@ class GameEngine:
         return self.process_node()
 
     def start_combat(self):
+        self._combat_stat_saves = {}
+        self._combat_modifier_messages = []
+        modifiers = getattr(self.current_node, 'combat_stat_modifiers', [])
+        stat_attr_map = {
+            'energia': 'current_energia',
+            'habilidade': 'current_habilidade',
+            'sorte': 'current_sorte',
+        }
+        for mod in modifiers:
+            stat = str(mod.get('stat', '')).lower()
+            attr = stat_attr_map.get(stat)
+            if attr and hasattr(self.character, attr):
+                if attr not in self._combat_stat_saves:
+                    self._combat_stat_saves[attr] = getattr(self.character, attr)
+                amount = self.current_node._resolve_effect_amount(mod.get('amount', 0))
+                self.current_node._apply_stat_delta(self.character, stat, amount)
+                sign = '+' if amount >= 0 else ''
+                label = mod.get('text') or stat.capitalize()
+                self._combat_modifier_messages.append(
+                    f"[Combat modifier] {label}: {stat.capitalize()} {sign}{amount} (temporary)"
+                )
         return self.current_node.create_combat(self.character, self.adventure)
 
+    def get_combat_modifier_messages(self):
+        """Return messages about temporary stat modifiers applied for the current combat."""
+        return list(self._combat_modifier_messages)
+
     def handle_combat_result(self, combat_result):
+        # Restore temporary combat stat modifiers
+        for attr, saved_value in self._combat_stat_saves.items():
+            setattr(self.character, attr, saved_value)
+        self._combat_stat_saves = {}
+        self._combat_modifier_messages = []
+
         if combat_result['status'] == 'victory':
             rewards = combat_result.get('rewards', {})
             messages = ['\n=== VICTORY! ===']

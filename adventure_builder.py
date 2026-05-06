@@ -64,7 +64,7 @@ class AdventureBuilder:
                         print("\n⚠️  No adventure loaded.")
                 case '7':
                     if self.adventure:
-                        save = input("\nSave before exiting? (y/n): ").strip().lower()
+                        save = input("\nSave before exiting? (y/N): ").strip().lower()
                         if save == 'y':
                             self.save_adventure()
                     print("\nGoodbye! Happy adventuring! 🎮")
@@ -101,7 +101,7 @@ class AdventureBuilder:
         print(f"✓ Starting node will be: '{starting_node_id}'")
         
         # Offer to create starting node
-        create_start = input("\nCreate the starting node now? (y/n): ").strip().lower()
+        create_start = input("\nCreate the starting node now? (y/N): ").strip().lower()
         if create_start == 'y':
             self.create_node(starting_node_id)
     
@@ -225,27 +225,38 @@ class AdventureBuilder:
         print("-"*70)
         
         # Monsters
-        add_monsters = input("\nAdd monsters? (y/n): ").strip().lower()
+        add_monsters = input("\nAdd monsters? (y/N): ").strip().lower()
         if add_monsters == 'y':
             self.add_monsters_to_node(node)
         
+        # Temporary combat stat modifiers (only relevant if there are monsters)
+        if node.monsters:
+            add_combat_mods = input("\nAdd temporary stat modifiers for combat? (y/N): ").strip().lower()
+            if add_combat_mods == 'y':
+                self.add_combat_stat_modifiers_to_node(node)
+
         # Treasure
-        add_treasure = input("\nAdd treasure? (y/n): ").strip().lower()
+        add_treasure = input("\nAdd treasure? (y/N): ").strip().lower()
         if add_treasure == 'y':
             self.add_treasure_to_node(node)
+
+        # Gold reward
+        add_gold = input("\nAdd gold reward in this node? (y/N): ").strip().lower()
+        if add_gold == 'y':
+            self.add_gold_reward_to_node(node)
         
         # Stat effects
-        add_stat_effects = input("\nAdd stat effects (energia/habilidade/sorte)? (y/n): ").strip().lower()
+        add_stat_effects = input("\nAdd stat effects (energia/habilidade/sorte)? (y/N): ").strip().lower()
         if add_stat_effects == 'y':
             self.add_stat_effects_to_node(node)
         
         # Gold cost
-        add_gold_cost = input("\nAdd gold cost to enter this node? (y/n): ").strip().lower()
+        add_gold_cost = input("\nAdd gold cost to enter this node? (y/N): ").strip().lower()
         if add_gold_cost == 'y':
             self.add_gold_cost_to_node(node)
         
         # Item cost
-        add_item_cost = input("\nAdd item cost to enter this node? (y/n): ").strip().lower()
+        add_item_cost = input("\nAdd item cost to enter this node? (y/N): ").strip().lower()
         if add_item_cost == 'y':
             self.add_item_cost_to_node(node)
         
@@ -278,12 +289,16 @@ class AdventureBuilder:
         for i, monster in enumerate(monsters, 1):
             print(f"  {i}. {monster}")
         print(f"  {len(monsters) + 1}. Custom monster (create your own)")
-        
-        print("\nEnter monster numbers separated by spaces or commas (e.g., '1 1 2' or '1,1,2'):")
-        print(f"Or enter '{len(monsters) + 1}' to create a custom monster:")
-        monster_input = input("> ").strip()
-        
-        if monster_input:
+
+        total_added = 0
+        while True:
+            print("\nEnter monster numbers separated by spaces or commas (e.g., '1 1 2' or '1,1,2').")
+            print(f"Use '{len(monsters) + 1}' for a custom monster, or press Enter to finish:")
+            monster_input = input("> ").strip()
+
+            if not monster_input:
+                break
+
             try:
                 tokens = monster_input.replace(',', ' ').split()
                 selected_indexes = [int(token) - 1 for token in tokens]
@@ -302,9 +317,34 @@ class AdventureBuilder:
                     else:
                         print(f"⚠️  Ignoring invalid monster option: {selected_index + 1}")
 
-                print(f"Added {added_count} monster(s)")
+                total_added += added_count
+                print(f"Added {added_count} monster(s) in this step. Total now: {len(node.monsters)}")
+
+                add_more = input("Add more monsters now? (y/N): ").strip().lower()
+                if add_more != 'y':
+                    break
             except ValueError:
-                print("❌ Invalid input. Skipping monsters.")
+                print("❌ Invalid input. Please enter numbers only.")
+
+        if total_added > 1:
+            self.configure_combat_mode(node)
+
+    def configure_combat_mode(self, node):
+        """Configure how combat works when a node has multiple monsters."""
+        print("\nCombat mode for this node:")
+        print("1. Simultaneous (one primary duel + support attacks from other monsters)")
+        print("2. Sequential (fight one monster at a time)")
+
+        current_mode = getattr(node, 'combat_mode', 'simultaneous')
+        default_choice = '1' if current_mode == 'simultaneous' else '2'
+        mode_choice = input(f"Choice [{default_choice}]: ").strip() or default_choice
+
+        if mode_choice == '2':
+            node.set_combat_mode('sequential')
+            print("✓ Combat mode set to sequential")
+        else:
+            node.set_combat_mode('simultaneous')
+            print("✓ Combat mode set to simultaneous")
     
     def create_custom_monster(self):
         """Create a custom monster using Steve Jackson stats."""
@@ -358,38 +398,22 @@ class AdventureBuilder:
                 break
             node.add_treasure(item)
             print(f"✓ Added: {item}")
-    
-    def add_traps_to_node(self, node):
-        """Add traps to a node"""
-        while True:
-            print("\n--- Add Trap ---")
-            trap_type = input("Trap description (e.g., 'spike trap', 'poison dart'): ").strip()
-            if not trap_type:
-                break
-            
-            try:
-                dc = int(input("Difficulty Class (DC) [10-25]: ").strip())
-                damage = input("Damage (e.g., '2d6', '1d8+2'): ").strip()
-                
-                print("\nSave type:")
-                print("1. Reflex (dodge)")
-                print("2. Fortitude (endurance)")
-                print("3. Will (mental)")
-                save_choice = input("Choice [1]: ").strip() or "1"
-                
-                save_types = {'1': 'reflex', '2': 'fortitude', '3': 'will'}
-                save_type = save_types.get(save_choice, 'reflex')
-                
-                node.add_trap(trap_type, dc, damage, save_type)
-                print(f"✓ Trap added: {trap_type} (DC {dc}, {damage} {save_type})")
-                
-                another = input("\nAdd another trap? (y/n): ").strip().lower()
-                if another != 'y':
-                    break
-            except ValueError:
-                print("❌ Invalid input. Skipping trap.")
-                break
 
+    def add_gold_reward_to_node(self, node):
+        """Add direct gold reward to a node"""
+        print("\n--- Set Gold Reward ---")
+        print("This is the amount of gold the player will gain when entering this node.")
+
+        try:
+            gold_reward = int(input("Gold reward [0]: ").strip() or "0")
+            if gold_reward > 0:
+                node.set_gold_reward(gold_reward)
+                print(f"✓ Gold reward set to {gold_reward} gp")
+            else:
+                print("⚠️  Gold reward must be greater than 0")
+        except ValueError:
+            print("❌ Invalid input. Must be a number.")
+    
     def add_stat_effects_to_node(self, node):
         """Add Steve Jackson stat effects to a node."""
         valid_stats = {'1': 'energia', '2': 'habilidade', '3': 'sorte'}
@@ -419,7 +443,43 @@ class AdventureBuilder:
             node.add_stat_effect(stat=stat, amount=amount, text=label or None)
             print(f"Added stat effect: {stat} {amount}")
 
-            another = input("\nAdd another stat effect? (y/n): ").strip().lower()
+            another = input("\nAdd another stat effect? (y/N): ").strip().lower()
+            if another != 'y':
+                break
+
+    def add_combat_stat_modifiers_to_node(self, node):
+        """Add temporary stat modifiers that apply only during combat and revert afterwards."""
+        valid_stats = {'1': 'energia', '2': 'habilidade', '3': 'sorte'}
+
+        while True:
+            print("\n--- Add Temporary Combat Stat Modifier ---")
+            print("This modifier applies ONLY during combat and reverts to normal after the fight.")
+            print("Example: goblin's curse reduces Habilidade by 1 for the duration of the fight.")
+            print("\nWhich stat should be temporarily modified?")
+            print("1. Energia")
+            print("2. Habilidade")
+            print("3. Sorte")
+
+            stat_choice = input("Choice [2]: ").strip() or '2'
+            stat = valid_stats.get(stat_choice)
+            if not stat:
+                print("❌ Invalid stat option.")
+                continue
+
+            print("\nAmount can be a number or dice expression.")
+            print("Use negative values to reduce the stat (e.g., -1, -1d3).")
+            print("Use positive values to boost the stat (e.g., +2, +1d6).")
+            amount = input("Amount: ").strip()
+            if not amount:
+                print("❌ Amount cannot be empty.")
+                continue
+
+            label = input("Optional label (e.g., 'goblin curse', 'battle rage'): ").strip()
+
+            node.add_combat_stat_modifier(stat=stat, amount=amount, text=label or None)
+            print(f"✓ Temporary combat modifier added: {stat} {amount}")
+
+            another = input("\nAdd another combat modifier? (y/N): ").strip().lower()
             if another != 'y':
                 break
     
@@ -462,7 +522,7 @@ class AdventureBuilder:
             except ValueError:
                 print("❌ Invalid quantity. Must be a number.")
             
-            another = input("\nAdd another item cost? (y/n): ").strip().lower()
+            another = input("\nAdd another item cost? (y/N): ").strip().lower()
             if another != 'y':
                 break
     
@@ -491,7 +551,7 @@ class AdventureBuilder:
                 continue
             
             # Requirements
-            add_req = input("Add requirements? (y/n): ").strip().lower()
+            add_req = input("Add requirements? (y/N): ").strip().lower()
             requirements = None
             
             if add_req == 'y':
@@ -580,8 +640,11 @@ class AdventureBuilder:
             print(f"Title: {node.title}")
             print(f"Description: {node.description[:50]}...")
             print(f"Monsters: {len(node.monsters)}")
+            print(f"Combat mode: {getattr(node, 'combat_mode', 'simultaneous')}")
             print(f"Treasure: {len(node.treasure)}")
+            print(f"Gold reward: {node.gold_reward}")
             print(f"Stat effects: {len(node.stat_effects)}")
+            print(f"Combat modifiers: {len(getattr(node, 'combat_stat_modifiers', []))}")
             print(f"Choices: {len(node.choices)}")
             print(f"Gold cost: {node.gold_cost}")
             print(f"Item costs: {len(node.item_cost)} types")
@@ -592,12 +655,14 @@ class AdventureBuilder:
             print("2. Description")
             print("3. Monsters")
             print("4. Treasure")
-            print("5. Stat effects")
-            print("6. Choices")
-            print("7. Gold cost")
-            print("8. Item costs")
-            print("9. Ending flags")
-            print("10. Back")
+            print("5. Gold reward")
+            print("6. Stat effects")
+            print("7. Choices")
+            print("8. Gold cost")
+            print("9. Item costs")
+            print("10. Ending flags")
+            print("11. Combat stat modifiers (temporary, during combat only)")
+            print("12. Back")
             
             edit_choice = input("\nChoice: ").strip()
             
@@ -626,13 +691,20 @@ class AdventureBuilder:
                 case '3':
                     print("\nCurrent monsters:", node.monsters)
                     print("1. Add monsters")
-                    print("2. Clear all monsters")
+                    print("2. Set combat mode")
+                    print("3. Clear all monsters")
                     m_choice = input("Choice: ").strip()
                     match m_choice:
                         case '1':
                             self.add_monsters_to_node(node)
                         case '2':
+                            if node.monsters:
+                                self.configure_combat_mode(node)
+                            else:
+                                print("⚠️  Add monsters first.")
+                        case '3':
                             node.monsters = []
+                            node.set_combat_mode('simultaneous')
                             print("✓ Monsters cleared")
                 
                 case '4':
@@ -648,6 +720,18 @@ class AdventureBuilder:
                             print("✓ Treasure cleared")
                 
                 case '5':
+                    print(f"\nCurrent gold reward: {node.gold_reward}")
+                    print("1. Set gold reward")
+                    print("2. Remove gold reward")
+                    gr_choice = input("Choice: ").strip()
+                    match gr_choice:
+                        case '1':
+                            self.add_gold_reward_to_node(node)
+                        case '2':
+                            node.gold_reward = 0
+                            print("✓ Gold reward removed")
+
+                case '6':
                     print("\nCurrent stat effects:", node.stat_effects)
                     print("1. Add stat effects")
                     print("2. Clear all stat effects")
@@ -659,7 +743,7 @@ class AdventureBuilder:
                             node.stat_effects = []
                             print("✓ Stat effects cleared")
                 
-                case '6':
+                case '7':
                     print("\nCurrent choices:")
                     for i, c in enumerate(node.choices, 1):
                         print(f"  {i}. {c['text']} → {c['target']}")
@@ -683,7 +767,7 @@ class AdventureBuilder:
                             node.choices = []
                             print("✓ Choices cleared")
                 
-                case '7':
+                case '8':
                     print(f"\nCurrent gold cost: {node.gold_cost}")
                     print("1. Set gold cost")
                     print("2. Remove gold cost")
@@ -697,7 +781,7 @@ class AdventureBuilder:
                             node.on_enter_events = []
                             print("✓ Gold cost removed")
                 
-                case '8':
+                case '9':
                     print(f"\nCurrent item costs:")
                     if node.item_cost:
                         for item_name, qty in node.item_cost.items():
@@ -727,7 +811,7 @@ class AdventureBuilder:
                             node.on_enter_events = [e for e in node.on_enter_events if 'item' not in str(e)]
                             print("✓ All item costs cleared")
                 
-                case '9':
+                case '10':
                     print(f"\nCurrent: Victory={node.is_victory}, Defeat={node.is_defeat}")
                     print("1. Set as victory")
                     print("2. Set as defeat")
@@ -748,7 +832,20 @@ class AdventureBuilder:
                             node.is_defeat = False
                             print("✓ Flags cleared")
                 
-                case '10':
+                case '11':
+                    mods = getattr(node, 'combat_stat_modifiers', [])
+                    print(f"\nCurrent combat modifiers: {mods if mods else 'None'}")
+                    print("1. Add combat modifier")
+                    print("2. Clear all combat modifiers")
+                    cm_choice = input("Choice: ").strip()
+                    match cm_choice:
+                        case '1':
+                            self.add_combat_stat_modifiers_to_node(node)
+                        case '2':
+                            node.combat_stat_modifiers = []
+                            print("✓ Combat modifiers cleared")
+
+                case '12':
                     break
     
     def delete_node(self):
@@ -778,7 +875,7 @@ class AdventureBuilder:
             print("❌ Node not found.")
             return
         
-        confirm = input(f"\n⚠️  Really delete '{node_id}'? (yes/no): ").strip().lower()
+        confirm = input(f"\n⚠️  Really delete '{node_id}'? (yes/NO): ").strip().lower()
         if confirm == 'yes':
             del self.adventure.nodes[node_id]
             print(f"✓ Node '{node_id}' deleted")
@@ -807,7 +904,9 @@ class AdventureBuilder:
             
             print(f"\n{i}. {marker} {node_id}{ending}")
             print(f"   Title: {node.title}")
-            print(f"   Monsters: {len(node.monsters)}, Treasure: {len(node.treasure)}, Stat effects: {len(node.stat_effects)}, Choices: {len(node.choices)}")
+            print(f"   Monsters: {len(node.monsters)}, Treasure: {len(node.treasure)}, Gold: {node.gold_reward}, Stat effects: {len(node.stat_effects)}, Choices: {len(node.choices)}")
+            if node.monsters:
+                print(f"   Combat mode: {getattr(node, 'combat_mode', 'simultaneous')}")
             
             if node.gold_cost > 0:
                 print(f"   💰 Gold cost: {node.gold_cost}")
@@ -888,8 +987,11 @@ class AdventureBuilder:
             
             if node.monsters:
                 print(f"  ⚔️  Monsters: {', '.join(node.monsters)}")
+                print(f"  ⚔️  Combat mode: {getattr(node, 'combat_mode', 'simultaneous')}")
             if node.treasure:
                 print(f"  💰 Treasure: {len(node.treasure)} item(s)")
+            if node.gold_reward > 0:
+                print(f"  🪙 Gold reward: {node.gold_reward} gp")
             if node.stat_effects:
                 print(f"  ⚙️  Stat effects: {len(node.stat_effects)}")
             
@@ -1003,7 +1105,7 @@ class AdventureBuilder:
         
         # Check if file exists
         if os.path.exists(filepath):
-            overwrite = input(f"\n⚠️  File exists. Overwrite? (y/n): ").strip().lower()
+            overwrite = input(f"\n⚠️  File exists. Overwrite? (y/N): ").strip().lower()
             if overwrite != 'y':
                 print("Cancelled.")
                 return

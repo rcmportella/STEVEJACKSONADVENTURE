@@ -5,12 +5,16 @@ import dice
 
 
 class Combat:
-    def __init__(self, character, monster):
+    def __init__(self, character, monster, mode='simultaneous'):
         self.character = character
         if isinstance(monster, list):
             self.monsters = monster
         else:
             self.monsters = [monster]
+        normalized_mode = str(mode or '').strip().lower()
+        if normalized_mode not in ('simultaneous', 'sequential'):
+            normalized_mode = 'simultaneous'
+        self.mode = normalized_mode
         self.round = 0
 
     def _alive_monsters(self):
@@ -22,6 +26,7 @@ class Combat:
     def get_combat_summary(self):
         lines = [
             f"Round: {self.round}",
+            f"Mode: {self.mode}",
             f"Hero Energia: {self.character.current_energia}/{self.character.max_energia}",
             "Monsters:",
         ]
@@ -117,9 +122,10 @@ class Combat:
             return {'status': 'victory', 'log': log + ["All monsters are defeated!"], 'rewards': {}}
 
         target = alive[0]
-        target_index = action.get('target_index')
-        if isinstance(target_index, int) and 0 <= target_index < len(alive):
-            target = alive[target_index]
+        if self.mode == 'simultaneous':
+            target_index = action.get('target_index')
+            if isinstance(target_index, int) and 0 <= target_index < len(alive):
+                target = alive[target_index]
 
         log.append(f"Primary duel target: {target.name}")
 
@@ -140,7 +146,7 @@ class Combat:
                 interactive=interactive,
             )
 
-        if self.character.is_alive():
+        if self.character.is_alive() and self.mode == 'simultaneous':
             support_attackers = [monster for monster in self._alive_monsters() if monster is not target]
             if support_attackers:
                 log.append("Other enemies press in:")
@@ -177,16 +183,17 @@ class Combat:
                 print("\nAll monsters are defeated!")
                 return 'victory'
 
-            print("\nTargets:")
-            for idx, monster in enumerate(alive, 1):
-                print(f"  [{idx}] {monster.name} ({monster.energia} energia)")
-
-            selected = input("Choose target number (Enter for first): ").strip()
             target_index = 0
-            if selected.isdigit():
-                parsed = int(selected) - 1
-                if 0 <= parsed < len(alive):
-                    target_index = parsed
+            if self.mode == 'simultaneous' and len(alive) > 1:
+                print("\nTargets:")
+                for idx, monster in enumerate(alive, 1):
+                    print(f"  [{idx}] {monster.name} ({monster.energia} energia)")
+
+                selected = input("Choose target number (Enter for first): ").strip()
+                if selected.isdigit():
+                    parsed = int(selected) - 1
+                    if 0 <= parsed < len(alive):
+                        target_index = parsed
 
             result = self.execute_round({'type': 'attack', 'target_index': target_index}, interactive=True)
             for line in result.get('log', []):

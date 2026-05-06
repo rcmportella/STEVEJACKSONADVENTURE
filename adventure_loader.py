@@ -45,8 +45,16 @@ class AdventureLoader:
         if 'monsters' in node_data:
             node.add_monster_encounter(node_data['monsters'])
 
+        if 'combat_mode' in node_data:
+            node.set_combat_mode(node_data['combat_mode'])
+
         if 'treasure' in node_data:
             node.add_treasure(node_data['treasure'])
+
+        if 'gold' in node_data:
+            node.set_gold_reward(node_data['gold'])
+        elif 'gold_reward' in node_data:
+            node.set_gold_reward(node_data['gold_reward'])
 
         if 'stat_effects' in node_data:
             for effect_data in node_data['stat_effects']:
@@ -79,6 +87,15 @@ class AdventureLoader:
         if 'item_cost' in node_data:
             for item_name, quantity in node_data['item_cost'].items():
                 node.set_item_cost(item_name, quantity)
+
+        if 'combat_stat_modifiers' in node_data:
+            for mod in node_data['combat_stat_modifiers']:
+                if isinstance(mod, dict) and 'stat' in mod:
+                    node.add_combat_stat_modifier(
+                        stat=mod['stat'],
+                        amount=mod.get('amount', 0),
+                        text=mod.get('text')
+                    )
 
         return node
 
@@ -116,9 +133,13 @@ class AdventureExporter:
 
         if node.monsters:
             node_dict['monsters'] = node.monsters
+            node_dict['combat_mode'] = node.combat_mode
 
         if node.treasure:
             node_dict['treasure'] = node.treasure
+
+        if node.gold_reward > 0:
+            node_dict['gold'] = node.gold_reward
 
         if node.stat_effects:
             node_dict['stat_effects'] = [
@@ -128,6 +149,16 @@ class AdventureExporter:
                     **({'text': effect['text']} if effect.get('text') else {})
                 }
                 for effect in node.stat_effects
+            ]
+
+        if node.combat_stat_modifiers:
+            node_dict['combat_stat_modifiers'] = [
+                {
+                    'stat': mod['stat'],
+                    'amount': mod['amount'],
+                    **({'text': mod['text']} if mod.get('text') else {})
+                }
+                for mod in node.combat_stat_modifiers
             ]
 
         if node.choices:
@@ -221,6 +252,11 @@ class AdventureEditor:
 
         if 'choices' in node_data and not isinstance(node_data['choices'], list):
             raise ValueError("'choices' must be a list")
+
+        if 'combat_mode' in node_data:
+            combat_mode = str(node_data['combat_mode']).lower()
+            if combat_mode not in ('simultaneous', 'sequential'):
+                raise ValueError("'combat_mode' must be 'simultaneous' or 'sequential'")
 
     @staticmethod
     def create_adventure_file(filepath, title, description, starting_node_id, *, overwrite=False):

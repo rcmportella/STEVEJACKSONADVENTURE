@@ -32,7 +32,10 @@ Main Features
 
 - Steve Jackson-style combat with `habilidade`, `energia`, and `sorte`
 - Multi-monster encounters
+- Per-node combat mode (`simultaneous` or `sequential`)
+- Temporary combat-only stat modifiers (`combat_stat_modifiers`)
 - Node-based stat effects (`stat_effects`) instead of D20 traps
+- Node gold rewards (`gold`) and entry costs (`gold_cost` / `item_cost`)
 - Adventure loading/saving in JSON format
 - Interactive adventure editing tools
 
@@ -55,7 +58,9 @@ Adventure Data Format (Summary)
 Each node may include:
 
 - `monsters`: list of monster names
+- `combat_mode`: `"simultaneous"` or `"sequential"` (optional, defaults to simultaneous)
 - `treasure`: list of strings
+- `gold`: direct gold reward granted on node enter
 - `stat_effects`: list of effects, e.g.:
 
 ```json
@@ -64,6 +69,17 @@ Each node may include:
   { "stat": "sorte", "amount": "+1", "text": "Lucky charm" }
 ]
 ```
+
+- `combat_stat_modifiers`: temporary effects applied only during combat in that node, e.g.:
+
+```json
+"combat_stat_modifiers": [
+  { "stat": "habilidade", "amount": "-2", "text": "Fighting in cramped tunnel" },
+  { "stat": "sorte", "amount": "+1", "text": "Battle focus" }
+]
+```
+
+Combat modifiers are automatically reverted after combat resolution (victory, defeat, or flee).
 
 Adventure editing API
 ---------------------

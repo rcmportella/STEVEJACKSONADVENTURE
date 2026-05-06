@@ -45,7 +45,16 @@ def play_adventure(game_engine):
             print("!"*60)
             
             combat = game_engine.start_combat()
+            modifier_messages = game_engine.get_combat_modifier_messages()
+            if modifier_messages:
+                ui.display_messages(modifier_messages)
+
             combat_result = {'status': 'ongoing'}
+
+            if combat.mode == 'sequential':
+                print("Fight mode: sequential (one monster at a time).")
+            else:
+                print("Fight mode: simultaneous (other monsters can land support attacks).")
             
             while combat_result['status'] == 'ongoing':
                 ui.display_combat_status(combat)
@@ -61,7 +70,7 @@ def play_adventure(game_engine):
                     # Attack
                     round_action = {'type': 'attack', 'weapon_damage': '1d8'}
                     alive_targets = combat.get_alive_monsters()
-                    if len(alive_targets) > 1:
+                    if combat.mode == 'simultaneous' and len(alive_targets) > 1:
                         print("\nChoose your duel target:")
                         for idx, monster in enumerate(alive_targets, 1):
                             print(f"  {idx}. {monster.name} ({monster.energia} energia)")

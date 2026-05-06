@@ -16,7 +16,9 @@ class GameNode:
         self.title = title
         self.description = description
         self.monsters = []
+        self.combat_mode = 'simultaneous'
         self.treasure = []
+        self.gold_reward = 0
         self.stat_effects = []
         self.choices = []
         self.is_victory = False
@@ -24,6 +26,7 @@ class GameNode:
         self.on_enter_events = []
         self.gold_cost = 0
         self.item_cost = {}
+        self.combat_stat_modifiers = []
 
     def add_monster_encounter(self, monster_types):
         if isinstance(monster_types, str):
@@ -31,14 +34,31 @@ class GameNode:
         else:
             self.monsters.extend(monster_types)
 
+    def set_combat_mode(self, mode):
+        normalized = str(mode or '').strip().lower()
+        if normalized not in ('simultaneous', 'sequential'):
+            normalized = 'simultaneous'
+        self.combat_mode = normalized
+
     def add_treasure(self, items):
         if isinstance(items, str):
             self.treasure.append(items)
         else:
             self.treasure.extend(items)
 
+    def set_gold_reward(self, amount):
+        self.gold_reward = max(0, int(amount))
+
     def add_stat_effect(self, stat, amount, text=None):
         self.stat_effects.append({
+            'stat': str(stat).lower(),
+            'amount': amount,
+            'text': text,
+        })
+
+    def add_combat_stat_modifier(self, stat, amount, text=None):
+        """Add a temporary stat modifier that applies only during combat and reverts after."""
+        self.combat_stat_modifiers.append({
             'stat': str(stat).lower(),
             'amount': amount,
             'text': text,
@@ -253,10 +273,16 @@ class GameNode:
             else:
                 monster_instances.append(create_monster(m_type))
 
-        return Combat(character, monster_instances)
+        return Combat(character, monster_instances, mode=self.combat_mode)
 
     def collect_treasure(self, character):
         messages = []
+
+        if self.gold_reward > 0:
+            character.add_gold(self.gold_reward)
+            messages.append(f"You found {self.gold_reward} gold pieces! (Total: {character.gold} gp)")
+            self.gold_reward = 0
+
         for item in self.treasure:
             if 'gold' in item.lower():
                 amount = int(''.join(filter(str.isdigit, item)))
