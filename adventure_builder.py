@@ -557,46 +557,39 @@ class AdventureBuilder:
             if add_req == 'y':
                 requirements = {}
                 print("\nRequirement type:")
-                print("1. Ability score (e.g., Strength 15)")
-                print("2. Item (e.g., needs 'key')")
-                print("3. Level (e.g., level 3+)")
+                print("1. Item (e.g., needs 'key')")
+                print("2. Level (e.g., level 3+)")
+                print("3. Luck check branch (Sorte pass/fail)")
                 print("4. No requirements")
                 
                 req_type = input("Choice: ").strip()
                 
                 match req_type:
                     case '1':
-                        print("\nAbility: str, dex, con, int, wis, cha")
-                        ability = input("Ability: ").strip().lower()
-                        if ability in ['strength', 'str']:
-                            ability = 'strength'
-                        elif ability in ['dexterity', 'dex']:
-                            ability = 'dexterity'
-                        elif ability in ['constitution', 'con']:
-                            ability = 'constitution'
-                        elif ability in ['intelligence', 'int']:
-                            ability = 'intelligence'
-                        elif ability in ['wisdom', 'wis']:
-                            ability = 'wisdom'
-                        elif ability in ['charisma', 'cha']:
-                            ability = 'charisma'
-                        
-                        if ability in ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma']:
-                            try:
-                                score = int(input(f"Required {ability} score: ").strip())
-                                requirements[ability] = score
-                            except ValueError:
-                                print("❌ Invalid score.")
-                    case '2':
                         item = input("Required item name: ").strip()
                         if item:
                             requirements['item'] = item
-                    case '3':
+                    case '2':
                         try:
                             level = int(input("Required level: ").strip())
                             requirements['level'] = level
                         except ValueError:
                             print("❌ Invalid level.")
+                    case '3':
+                        check_id = input("Luck check ID (same ID for pass/fail pair): ").strip()
+                        if not check_id:
+                            check_id = 'default'
+
+                        print("Show this choice when:")
+                        print("1. Luck test passes")
+                        print("2. Luck test fails")
+                        luck_result = input("Choice: ").strip()
+                        if luck_result == '1':
+                            requirements['luck_check'] = {'id': check_id, 'must_pass': True}
+                        elif luck_result == '2':
+                            requirements['luck_check'] = {'id': check_id, 'must_pass': False}
+                        else:
+                            print("❌ Invalid luck condition.")
             
             node.add_choice(choice_text, target, requirements)
             print(f"✓ Choice added → {target}")

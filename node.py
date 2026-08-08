@@ -110,17 +110,42 @@ class GameNode:
                 messages.append(msg)
         return messages
 
-    def check_requirements(self, character, choice_index):
+    def check_requirements(self, character, choice_index, luck_cache=None):
         if choice_index >= len(self.choices):
             return False, "Invalid choice"
         choice = self.choices[choice_index]
         requirements = choice['requirements']
+
+        if 'level' in requirements:
+            required_level = requirements['level']
+            character_level = getattr(character, 'level', 1)
+            if character_level < required_level:
+                return False, f"Requires level {required_level}+"
 
         if 'item' in requirements:
             required_item = requirements['item']
             has_item = any(getattr(item, 'name', '') == required_item for item in getattr(character, 'inventory', []))
             if not has_item:
                 return False, f"Requires {required_item}"
+
+        if 'luck_check' in requirements:
+            luck_rule = requirements.get('luck_check', {})
+            if not isinstance(luck_rule, dict):
+                return False, "Invalid luck check"
+
+            check_id = str(luck_rule.get('id') or f"{self.node_id}:default")
+            must_pass = bool(luck_rule.get('must_pass', True))
+
+            if luck_cache is None:
+                luck_cache = {}
+
+            if check_id not in luck_cache:
+                luck_cache[check_id] = bool(character.test_sorte())
+
+            passed = luck_cache[check_id]
+            if passed != must_pass:
+                expected = "successful" if must_pass else "failed"
+                return False, f"Requires {expected} luck test"
 
         return True, ""
 

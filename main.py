@@ -129,7 +129,9 @@ def play_adventure(game_engine):
         
         # Display choices if game is still active
         if not game_engine.game_over:
-            ui.display_choices(game_engine.current_node)
+            visible_choices = game_engine.get_visible_choices()
+            visible_mapping = game_engine.get_visible_choice_mapping()
+            ui.display_choices(game_engine.current_node, visible_choices)
             
             # Additional commands
             print("\nOther commands: [S]tatus, [I]tem, [H]elp, [Q]uit")
@@ -189,7 +191,11 @@ def play_adventure(game_engine):
             
             # Process normal choice
             try:
-                choice_idx = int(choice) - 1
+                displayed_choice_idx = int(choice) - 1
+                if displayed_choice_idx < 0 or displayed_choice_idx >= len(visible_mapping):
+                    raise IndexError
+
+                choice_idx = visible_mapping[displayed_choice_idx]
                 result = game_engine.handle_choice(choice_idx)
                 
                 if result['status'] == 'error' or result['status'] == 'blocked':

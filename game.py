@@ -18,6 +18,8 @@ class GameEngine:
         self.game_log = []
         self._combat_stat_saves = {}
         self._combat_modifier_messages = []
+        self._current_luck_cache = {}
+        self._visible_choice_indices = []
 
     def start_game(self):
         self._log(f"\n{'='*60}")
@@ -53,6 +55,8 @@ class GameEngine:
             }
         treasure_messages = self.current_node.collect_treasure(self.character)
         has_combat = self.current_node.has_combat()
+        self._current_luck_cache = {}
+        self._visible_choice_indices = self._compute_visible_choice_indices()
         return {
             'status': 'active',
             'node': self.current_node,
@@ -63,10 +67,35 @@ class GameEngine:
             'game_over': False,
         }
 
+    def _compute_visible_choice_indices(self):
+        visible_indices = []
+        for index, _choice in enumerate(self.current_node.choices):
+            can_choose, _reason = self.current_node.check_requirements(
+                self.character,
+                index,
+                luck_cache=self._current_luck_cache,
+            )
+            if can_choose:
+                visible_indices.append(index)
+        return visible_indices
+
+    def get_visible_choices(self):
+        return [self.current_node.choices[index] for index in self._visible_choice_indices]
+
+    def get_visible_choice_mapping(self):
+        return list(self._visible_choice_indices)
+
     def handle_choice(self, choice_index):
         if choice_index < 0 or choice_index >= len(self.current_node.choices):
             return {'status': 'error', 'message': 'Invalid choice!'}
-        can_choose, reason = self.current_node.check_requirements(self.character, choice_index)
+        if self._visible_choice_indices and choice_index not in self._visible_choice_indices:
+            return {'status': 'blocked', 'message': 'This option is not currently available.'}
+
+        can_choose, reason = self.current_node.check_requirements(
+            self.character,
+            choice_index,
+            luck_cache=self._current_luck_cache,
+        )
         if not can_choose:
             return {'status': 'blocked', 'message': f"Cannot choose this option: {reason}"}
         choice = self.current_node.choices[choice_index]
@@ -166,8 +195,18 @@ class GameUI:
         print(node.get_display_text())
 
     @staticmethod
-    def display_choices(node):
-        print(node.get_choices_text())
+    def display_choices(node, visible_choices=None):
+        if visible_choices is None:
+            print(node.get_choices_text())
+            return
+
+        if not visible_choices:
+            print("\n[No choices currently available]")
+            return
+
+        print("\nWhat do you do?")
+        for i, choice in enumerate(visible_choices, 1):
+            print(f"  [{i}] {choice['text']}")
 
     @staticmethod
     def display_character(character):
