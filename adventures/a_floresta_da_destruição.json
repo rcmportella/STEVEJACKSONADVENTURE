@@ -898,6 +898,205 @@
           "target": "371"
         }
       ]
+    },
+    {
+      "node_id": "50",
+      "title": "50",
+      "description": "Em volta do pesco\u00e7o de um dos Montanheses Selvagens, voc\u00ea encontra uma pequena chave de prata presa a um cord\u00e3o de couro. Voc\u00ea desamarra o cord\u00e3o e p\u00f5e a chave  na sua mochila. Em seguinda, parte novamente para o norte.",
+      "treasure": [
+        "Chave de Prata"
+      ],
+      "choices": [
+        {
+          "text": "Continue para o norte",
+          "target": "188"
+        }
+      ]
+    },
+    {
+      "node_id": "51",
+      "title": "51",
+      "description": "Voc\u00ea vai andando pelo vale verdejante at\u00e9 chegar a uma encruzilhada na trilha.",
+      "choices": [
+        {
+          "text": "Siga para o norte",
+          "target": "199"
+        },
+        {
+          "text": "Continue para o leste",
+          "target": "397"
+        }
+      ]
+    },
+    {
+      "node_id": "52",
+      "title": "52",
+      "description": "Quin explica que ele apostar\u00e1 uma quantidade de Poeira da Levita\u00e7\u00e3o contra algum artigo ou moedas no valor de 10 pe\u00e7as de ouro. Ao sentar-se \u00e0 mesa defronte a ele, voc\u00ea agilmente coloca a Bra\u00e7adeira da For\u00e7a em seu bra\u00e7o. Voc\u00ea p\u00f5e seu cotovelo na mesa e as m\u00e3os dos dois se entrela\u00e7am. O aperto dele \u00e9 como o de uma garra de ferro, e seus olhos escuros e obl\u00edquos parecem confiantes. Seus b\u00edceps crescem, ele d\u00e1 o sinal para que a contenda comece. Voc\u00ea come\u00e7a a empurrar o bra\u00e7o dele para baixo e fica admirado com sua pr\u00f3pria for\u00e7a. O suor come\u00e7a a brotar na testa dele, e voc\u00ea pode reparar na dor e na incredulidade estampadas no seu rosto. Voc\u00ea empurra com mais forte e for\u00e7a o bra\u00e7o dele na dire\u00e7\u00e3o da mesa para derrot\u00e1-lo.\nENDD",
+      "choices": [
+        {
+          "text": "Continue",
+          "target": "78"
+        }
+      ]
+    },
+    {
+      "node_id": "53",
+      "title": "53",
+      "description": "Os m\u00fasculos do seu pesco\u00e7o come\u00e7am a endurecer, e voc\u00ea sente o efeito do veneno dos dardos que percorre seu corpo. Arranca os dardos de seus perco\u00e7o, mas \u00e9 tarde demais. Voc\u00ea cai de joelhos e depois tomba inconsciente. Quando desperta, descobre que sua espada e seus pertences ainda est\u00e3o com voc\u00ea, mas todos o seu ouro foi levado. Os pigmeus roubaram tudo. Voc\u00ea sacode o punho contra os ladr\u00f5es j\u00e1 fora de sua vis\u00e3o e come\u00e7a a caminhar para o norte de novo ao longo da trilha.",
+      "choices": [
+        {
+          "text": "Continue para o norte",
+          "target": "92"
+        }
+      ],
+      "gold_cost": 99
+    },
+    {
+      "node_id": "54",
+      "title": "54",
+      "description": "Quando voc\u00ea desembainha a espada, Yaztromo se volta para voc\u00ea e o aconselha sem se alterar a n\u00e3o ser tolo, pois a magia dele \u00e9 poderosa.",
+      "choices": [
+        {
+          "text": "Ataque Yaztromo de qualquer maneira.",
+          "target": "399"
+        },
+        {
+          "text": "Mude de ideia e siga-o escada acima.",
+          "target": "261"
+        }
+      ]
+    },
+    {
+      "node_id": "55",
+      "title": "55",
+      "description": "Voc\u00ea remexe em sua mochila e retira a luva de seda roxa. Ela serve perfeitamente na sua m\u00e3o. Em seguida, voc\u00ea se abaixa e apanha uma pedra de bom tamanho. Faz mira e atira esta pedra com toda for\u00e7a no Ogro. Ela voa como uma flecha para atingi-lo no lado da cabe\u00e7a, derrubando-o inconsciente. A criatura na jaula pula para todos os lados ainda mais freneticamente do que antes.",
+      "choices": [
+        {
+          "text": "D\u00ea uma olhada mais de perto na criatura da gaiola.",
+          "target": "168"
+        },
+        {
+          "text": "Examine os objetos que a caverna cont\u00e9m.",
+          "target": "313"
+        },
+        {
+          "text": "Sai da caverna imediatamente e continue para o norte.",
+          "target": "358"
+        }
+      ]
+    },
+    {
+      "node_id": "56",
+      "title": "56",
+      "description": "Caminhando pelo tranquilo fundo do vale, voc\u00ea chega a uma encruzilhada na trilha. Voc\u00ea v\u00ea que o caminho para o sul leva de volta para as montanhas, por isso decide descartar esta op\u00e7\u00e3o.",
+      "choices": [
+        {
+          "text": "Siga para o oeste.",
+          "target": "233"
+        },
+        {
+          "text": "Siga para o norte.",
+          "target": "163"
+        }
+      ]
+    },
+    {
+      "node_id": "57",
+      "title": "57",
+      "description": "Voc\u00ea caminha para investigar o covil mas, subitamente, se d\u00e1 conta de que uma sobra escura se espalha por toda a parte a sua volta. Voc\u00ea ouve um rugido alto, acima de voc\u00ea e levanta os olhoss, avistando uma criatura semelhante a um drag\u00e3o, com duas pernas e pele verde coberta de escamas, que desce voando para seu covil. Um jato de fogo parte de sua boca na dire\u00e7\u00e3o em que voc\u00ea se encontra.",
+      "choices": [
+        {
+          "text": "Voc\u00ea teve sorte, o jato de fogo n\u00e3o o atinge e explode a seus p\u00e9s.",
+          "target": "132",
+          "requirements": {
+            "dexterity": 12
+          }
+        },
+        {
+          "text": "O jato de fogo atinge suas costas derrubando-o ao ch\u00e3o.",
+          "target": "35"
+        }
+      ]
+    },
+    {
+      "node_id": "58",
+      "title": "58",
+      "description": "Voc\u00ea remexe na sua mochila e tira a pequena garrafa de \u00e1gua benta. Retirando rapidamente a rolha, voc\u00ea joga a \u00e1gua no ghoul que avan\u00e7a. Uma fuma\u00e7a espessas sobe pelo ar, sa\u00edda das marcas de queimadura causadas pela \u00e1gua benta na carne putrefata do ghoul. O ghoul parece estar sofrendo dores atrozes, mas n\u00e3o se ouve  um s\u00f3 som sa\u00eddo de sua boca escancarada. Ele se arrasta at\u00e9 um canto do aposento, desesperado para escapar de sua terr\u00edvel arma. Voc\u00ea caminha at\u00e9 o caix\u00e3o e olha l\u00e1 dentro. Fica exultante ao ver, al\u00e9m de 25 pe\u00e7as de ouro, um objeto que o ghoul estava usando como descanso para a cabe\u00e7a - uma cabe\u00e7a de martelo de bronze com a letra G inscrita nela. Voc\u00ea coloca seus achados alegremente na mochila e caminha de volta, subindo as escadas, para deixar a cripta e retornar \u00e0 trilha, seguindo para o norte.",
+      "treasure": [
+        "25 gold pieces",
+        "Bronze Hammer Head"
+      ],
+      "gold": 25,
+      "choices": [
+        {
+          "text": "Continue para o norte",
+          "target": "112"
+        }
+      ]
+    },
+    {
+      "node_id": "59",
+      "title": "59",
+      "description": "Voc\u00ea chega a uma outra encruzilhada na trilha. Ignorando o caminho para o sul, voc\u00ea continua para o leste.",
+      "choices": [
+        {
+          "text": "Continue para o leste.",
+          "target": "171"
+        }
+      ]
+    },
+    {
+      "node_id": "60",
+      "title": "60",
+      "description": "Voc\u00ea prende a respira\u00e7\u00e3o e remexe na sua mochila, procurando freneticamente por seus Filtros Nasais.",
+      "choices": [
+        {
+          "text": "Com sorte, voc\u00ea acha rapidamente seus Filtros Nasais.",
+          "target": "183",
+          "requirements": {
+            "luck_check": {
+              "id": "achou_filtros",
+              "must_pass": true
+            }
+          }
+        },
+        {
+          "text": "Voc\u00ea est\u00e1 com azar e demora para achar os filtros nasais.",
+          "target": "183",
+          "requirements": {
+            "luck_check": {
+              "id": "achou_filtros",
+              "must_pass": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "node_id": "61",
+      "title": "61",
+      "description": "Logo voc\u00ea est\u00e1 de volta \u00e0 primeira encruzilhada.",
+      "choices": [
+        {
+          "text": "Voc\u00ea engatinha de volta para o po\u00e7o ao sul.",
+          "target": "398"
+        },
+        {
+          "text": "Continue para o leste.",
+          "target": "151"
+        }
+      ]
+    },
+    {
+      "node_id": "62",
+      "title": "62",
+      "description": "Quando voc\u00ea retira sua espada de seu \u00faltimo oponente, o corcel branco galopa se afastando para o leste pela trilha at\u00e9 se perder na dist\u00e2ncia.",
+      "choices": [
+        {
+          "text": "Voc\u00ea se volta e parte para o oeste novamente.",
+          "target": "208"
+        }
+      ]
     }
   ],
   "custom_monsters": {
